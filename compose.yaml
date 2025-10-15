@@ -1,7 +1,4 @@
 services:
-  database:
-    image: "mariadb"
-
   django:
     image: "python3"
     volume:
@@ -17,5 +14,18 @@ services:
     ports:
       - ${PORT}:8000
     depends_on:
-      mariadb:
+      database:
         condition: service_healthy
+
+  database:
+    image: "mariadb"
+    volumes:
+      - "mariadb:/var/lib/mysql:rw"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+  volumes:
+    mariadb:
