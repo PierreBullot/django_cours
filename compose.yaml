@@ -20,7 +20,7 @@ services:
   database:
     image: "mariadb"
     volumes:
-      - "mariadb:/var/lib/mysql:rw"
+      - "mariadb_data:/var/lib/mysql:rw"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -28,4 +28,4 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
 
   volumes:
-    mariadb:
+    mariadb_data:
