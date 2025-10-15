@@ -1,0 +1,8 @@
+services:
+  database:
+    image: "mariadb"
+
+  django:
+    image: "python3"
+    volume:
+      - "./app:/app"
