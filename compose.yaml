@@ -6,3 +6,6 @@ services:
     image: "python3"
     volume:
       - "./app:/app"
+    environment:
+      DEBUG:
+      SECRET_KEY:
