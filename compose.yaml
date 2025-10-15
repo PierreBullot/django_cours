@@ -15,10 +15,10 @@ services:
     ports:
       - ${PORT}:8000
     depends_on:
-      database:
+      maria_database:
         condition: service_healthy
 
-  database:
+  maria_database:
     image: "mariadb"
     volumes:
       - "mariadb_data:/var/lib/mysql:rw"
@@ -27,6 +27,13 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_interval: 3s
+      start_period: 15s
+      interval: 2m
+      retries: 3
+      timeout: 5s
 
-  volumes:
-    mariadb_data:
+volumes:
+  mariadb_data:
