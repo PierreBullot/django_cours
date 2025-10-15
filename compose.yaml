@@ -1,8 +1,9 @@
 services:
   django:
-    image: "python3"
-    volume:
-      - "./app:/app"
+    build:
+      context: docker
+    volumes:
+      - ".:/app"
     environment:
       DEBUG:
       SECRET_KEY:
