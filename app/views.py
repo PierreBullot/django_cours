@@ -7,7 +7,7 @@ images_directory = f"{settings.BASE_DIR}/data"
 
 
 def index(request):
-    images_list = os.listdir(images_directory)
+    images_list = [{"file": image, "name": image.split(".")[0]} for image in os.listdir(images_directory)]
     breadcrumb = [
         ("Home", "")
     ]
@@ -18,7 +18,7 @@ def index(request):
 def book(request, path):
     breadcrumb = [
         ("Home", "/"),
-        (path, "")
+        (path.split(".")[0], "")
     ]
 
     context = {"breadcrumb": breadcrumb, "cover_url": f"/cover/{path}"}
