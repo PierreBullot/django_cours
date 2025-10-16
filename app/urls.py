@@ -21,4 +21,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
+    path('book/<str:path>', views.book),
+    path('cover/<str:path>', views.cover)
 ] + debug_toolbar_urls()

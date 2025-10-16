@@ -1,5 +1,9 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-    <p class="text-primary">Bonjour {{name}}.</p>
+    <ul>
+        {% for image in images %}
+            <li><a href="{{book_url}}{{image}}">{{image}}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}
