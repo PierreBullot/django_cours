@@ -2,5 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
-    context = {'name': 'toto'}
+    breadcrumb = [
+        ("Home", "/")
+    ]
+    context = {'name': 'toto', "breadcrumb": breadcrumb}
     return render(request, "index.html", context)
