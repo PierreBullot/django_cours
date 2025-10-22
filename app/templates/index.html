@@ -2,8 +2,8 @@
 
 {% block content %}
     <ul>
-        {% for image in images %}
-            <li><a href="{{book_url}}{{image.file}}">{{image.name}}</a></li>
+        {% for novel in novels %}
+            <li><a href="{{book_url}}{{novel.name}}">{{novel.name}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
