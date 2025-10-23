@@ -2,8 +2,10 @@
 
 {% block content %}
     <ul>
-        {% for novel in novels %}
-            <li><a href="{{book_url}}{{novel.name}}">{{novel.name}}</a></li>
+        {% for novel in object_list %}
+            <li><a href="{{book_url}}{{novel.pk}}">{{novel.name}}</a></li>
         {% endfor %}
     </ul>
+
+    {{form}}
 {% endblock %}
