@@ -22,5 +22,6 @@ from . import views
 urlpatterns = [
     path('', views.BookList.as_view()),
     path('book/<int:pk>', views.BookDetail.as_view()),
-    path('cover/<str:book_name>', views.cover)
+    path('cover/<str:book_name>', views.cover),
+    path('add/', views.CreateBook.as_view())
 ] + debug_toolbar_urls()
