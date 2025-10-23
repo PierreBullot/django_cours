@@ -11,7 +11,7 @@ images_directory = f"{settings.BASE_DIR}/data"
 def cover(request, book_name):
     novel = get_novel_from_name(book_name)
 
-    return FileResponse(open(f"{images_directory}/{novel.cover_path}", "rb"))
+    return FileResponse(novel.cover)
 
 
 def get_novel_from_name(name):
@@ -29,10 +29,12 @@ class BookList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        new_book_form = forms.BookForm()
+        context["form"] = new_book_form
+        context["book_url"] = "/book/"
         context["breadcrumb"] = [
             ("Home", "")
         ]
-        context["book_url"] = "/book/"
 
         return context
 
@@ -56,16 +58,3 @@ class BookDetail(DetailView):
 class CreateBook(CreateView):
     template_name = 'create.html'
     form_class = forms.BookForm
-
-    def post(self, request, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
-        new_book_form = forms.BookForm()
-        context["form"] = new_book_form
-
-        if request.method != 'POST':
-            return context
-
-        form = forms.BookForm(request.POST)
-        form.save()
-
-        return context
